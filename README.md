@@ -2,6 +2,12 @@
 
   A Discord Bot that retrieves and displays information from the popular game-server analytic site, Battlemetrics.
 
+# Setup 
+
+  I had to remove my personal discord bot token because there were spiders roaming around <br />
+  collecting the tokens to send malicious links to people. To make this bot work, please open <br />
+  the auth.json file and enter your own personal discord bot token obtainable at https://discordapp.com/developers/applications/ <br />
+
 # Commands
 
 (prefix)help - Displays the help menu for the bot and all the commands that it recognizes. <br />
