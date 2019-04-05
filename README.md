@@ -12,6 +12,7 @@
 
 (prefix)help - Displays the help menu for the bot and all the commands that it recognizes. <br />
 (prefix)prefix <newPrefix> - Changes the current prefix that the bot uses to recognize commands. <br />
+(prefix)list <query> - Makes a query to the battlemetrics site to return the top 10 results. <br />
 (prefix)server <serverID> - Makes the bot send <b>live</b> battlemetrics data about the server. <br />
 
 # Images 
