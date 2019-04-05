@@ -1,6 +1,22 @@
-var Discord = require('discord.js');
-var logger = require('winston');
-var auth = require('./auth.json');
+/**
+    file: main.js
+    version: 1.0.0
+    description: The main code behind the battlemetrics discord bot to make requests and send them back to the user
+    author: Justin Yau
+    see: https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/
+    see: https://discordjs.guide/preparations/#installing-discord-js
+ */
+
+var Discord = require('discord.js'); // npm install discord.js
+var logger = require('winston');     // npm install winston
+/**
+   auth.json format:
+    {
+        "token": "insert token here"
+    }
+ */
+var auth = require('./auth.json');   // touch auth.json -> vim auth.json
+var prefix = '!';
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -19,19 +35,24 @@ bot.once('ready', function (evt) {
 bot.login(auth.token);
 
 bot.on('message', message => {
-    // Our bot needs to know if it will execute a command
-    // It will listen for messages that will start with `!`
-    if (message.content.substring(0, 1) == '!') {
-        var args = message.content.substring(1).split(' ');
-        var cmd = args[0];
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-        args = args.splice(1);
-        switch(cmd) {
-            // !ping
-            case 'ping':
-                message.channel.send("Pong!");
-                break;
-            // Just add any case commands if you want to..
-        }
+    const args = message.content.slice(prefix.length).split(' ');
+    const command = args.shift().toLowerCase();
+
+    switch(command) {
+        case 'help':
+            message.channel.send("**Help Menu**:\n" +
+                                    "\tPrefix: " + prefix + "\n" +
+                                    "\tHelp Menu: " + prefix + "help\n" +
+                                    "\tChange prefix: " + prefix + "prefix (newPrefix)\n" +
+                                    "\tServer Information: " + prefix + "server (serverID)");
+            break;
+        case 'prefix':
+            prefix = args[0];
+            message.channel.send("Prefix successfully changed to: " + prefix);
+            break;
+        default:
+            message.channel.send("Command: " + command + " not recognized!");
     }
 });
