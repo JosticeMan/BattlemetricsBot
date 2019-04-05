@@ -1,0 +1,12 @@
+{
+  "name": "Battlemetrics-Bot",
+  "version": "1.0.0",
+  "description": "A bot that is able to retrieve server information from battlemetrics and display it.",
+  "main": "main.js",
+  "author": "Justin Yau",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "discord.js": "^11.4.2",
+    "winston": "^3.2.1"
+  }
+}
