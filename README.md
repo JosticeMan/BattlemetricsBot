@@ -7,6 +7,13 @@
   I had to remove my personal discord bot token because there were spiders roaming around <br />
   collecting the tokens to send malicious links to people. To make this bot work, please open <br />
   the auth.json file and enter your own personal discord bot token obtainable at https://discordapp.com/developers/applications/ <br />
+  
+# Starting the Bot
+
+  Clone this package into a folder and open a command terminal. <br />
+  Make sure install all dependencies and navigate to the new folder using cd. <br />
+  <b> npm install unirest winston discord.io discord.js </b> <br />
+  Do node main.js to start the bot!
 
 # Commands
 
