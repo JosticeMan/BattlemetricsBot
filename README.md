@@ -13,6 +13,7 @@
   Clone this package into a folder and open a command terminal. <br />
   Make sure install all dependencies and navigate to the new folder using cd. <br />
   <b> npm install unirest winston discord.io discord.js </b> <br />
+  Install node.js such that it recognizes commands made to it. <br />
   Do node main.js to start the bot!
 
 # Commands
