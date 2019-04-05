@@ -47,11 +47,38 @@ bot.on('message', message => {
                                     "\tPrefix: " + prefix + "\n" +
                                     "\tHelp Menu: " + prefix + "help\n" +
                                     "\tChange prefix: " + prefix + "prefix (newPrefix)\n" +
+                                    "\tList: " + prefix + "list (query) \n" +
                                     "\tServer Information: " + prefix + "server (serverID)");
             break;
         case 'prefix':
             prefix = args[0];
             message.channel.send("Prefix successfully changed to: " + prefix);
+            break;
+        case 'list':
+            var query = args[0];
+            console.log("https://api.battlemetrics.com/servers?filter[search]=\"" + query + "\"");
+            unirest.get("https://api.battlemetrics.com/servers?filter[search]=\"" + query + "\"")
+                .end(function (result) {
+                    var json = JSON.parse(JSON.stringify(result.body));
+                    if(result.status != 200) {
+                        message.reply("An error occurred while trying to make the API request!");
+                    } else {
+                        console.log(json);
+                        var i = 1;
+                        message.channel.send("**Server List for "  + query + "**:");
+                        json.data.map(data => {
+                            message.channel.send( "**Server #"  + i + "**:" + "\n" +
+                                               "\tServer Name: " + data.attributes.name + "\n" +
+                                                    "\tServer ID: " + data.id + "\n" +
+                                                    "\tGame: " + data.relationships.game.data.id + "\n" +
+                                                    "\tServer IP: " + data.attributes.ip + "\n" +
+                                                    "\tPlayers: " + data.attributes.players + "\n" +
+                                                    "\tMax Players: " + data.attributes.maxPlayers + "\n" +
+                                                    "\tServer Rank: " + data.attributes.rank);
+                            i = i + 1;
+                        })
+                    }
+                });
             break;
         case 'server':
             var server_id = args[0];
