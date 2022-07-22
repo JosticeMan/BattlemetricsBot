@@ -1,5 +1,5 @@
 /**
-    file: main.js
+    file: main.jss
     version: 1.0.0
     description: The main code behind the battlemetrics discord bot to make requests and send them back to the user
     author: Justin Yau
